@@ -4,13 +4,18 @@ import { Coder } from './coder.js';
 import { Prompter } from './prompter.js';
 import { initModes } from './modes.js';
 import MCData from '../utils/mcdata.js';
-import { containsCommand, commandExists, executeCommand, truncCommandMessage } from './commands/index.js';
+import { containsCommand, commandExists, executeCommand } from './commands/index.js';
 import { NPCContoller } from './npc/controller.js';
 import { MemoryBank } from './memory_bank.js';
 import fs from 'fs/promises';
 import { queryList } from './commands/queries.js';
 import * as world from "./library/world.js";
 import { Thought } from './thought.js';
+import { Camera } from './vision.js';
+import { Vec3 } from 'vec3';
+
+// import { mineflayer as mineflayerViewer } from 'prismarine-viewer';
+
 
 const queryMap = {
     stats: queryList.find(query => query.name === "!stats").perform,
@@ -84,7 +89,14 @@ export class Agent {
 
         this.bot.once('spawn', async () => {
             // Wait for a bit so stats are not undefined
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            await this.bot.waitForChunksToLoad();
+            const camera = new Camera(this.bot);
+            await camera.init();
+            await camera.takePicture(new Vec3(1, -0.2, 0), `${this.userDataDir}/screenshot.png`);
+
+            // mineflayerViewer(this.bot, { firstPerson: true, port: 3000 });
 
             console.log(`${this.name} spawned.`);
             this.coder.clear();

@@ -2,6 +2,9 @@ import * as skills from './library/skills.js';
 import * as world from './library/world.js';
 import MCData from '../utils/mcdata.js';
 
+import fs from 'fs/promises';
+import path from 'path';
+
 // a mode is a function that is called every tick to respond immediately to the world
 // it has the following fields:
 // on: whether 'update' is called every tick
@@ -308,6 +311,25 @@ const modes = [
          */
         update: function (agent) { /* do nothing */ }
     },
+    {
+        name: 'take_picture',
+        description: 'Take a picture of the current view.',
+        interrupts: [],
+        on: true,
+        active: false,
+        /**
+         * Update function for takePicture mode.
+         * Takes a picture of the current view.
+         * @param {Object} agent - The agent object containing the bot.
+         */
+        update: async function (agent) {
+            // const app_path = agent.userDataDir;
+            // const screenshot_path = path.join(app_path, 'screenshot.png');
+
+            // // create a dummy screenshot file at screenshot_path
+            // await fs.writeFile(screenshot_path, 'dummy screenshot');
+        }
+    }
     // {
     //     name: 'farming',
     //     description: 'Plant wheat seeds on hoed dirt.',

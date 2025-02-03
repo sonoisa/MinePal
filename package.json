@@ -10,8 +10,10 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "canvas": "^3.0.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "gl": "^8.1.6",
     "langfuse": "^3.30.1",
     "lowdb": "^7.0.1",
     "mic": "^2.1.2",
@@ -27,7 +29,9 @@
     "patch-package": "^8.0.0",
     "pidusage": "^3.0.2",
     "prismarine-item": "^1.14.0",
+    "prismarine-viewer": "1.28.0",
     "rotating-file-stream": "^3.2.3",
+    "three": "0.128.0",
     "ws": "^8.18.0",
     "yargs": "^17.7.2"
   },
@@ -78,7 +82,9 @@
     "win": {
       "target": {
         "target": "nsis",
-        "arch": ["x64"]
+        "arch": [
+          "x64"
+        ]
       },
       "icon": "build/icon.ico"
     },
